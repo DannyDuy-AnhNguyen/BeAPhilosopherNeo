@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>showQuote</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<h2>Lists of quotes</h2>
+<div class="bd-example">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Quote ID</th>
+            <th scope="col">Quote</th>
+            <th scope="col">Likes</th>
+            <th scope="col">Dislikes</th>
+            <th scope="col">Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through the users list and display each user's data -->
+        <tr th:each="quote : ${quotes}">
+            <th scope="row" th:text="${quote.id}">1</th>
+            <td th:text="${quote.text}">First Name</td>
+            <td th:text="${quote.like}">Last Name</td>
+            <td th:text="${quote.dislike}">Username</td>
+            <td th:text="${quote.username}">Author</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

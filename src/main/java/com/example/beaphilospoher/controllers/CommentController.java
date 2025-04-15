@@ -1,4 +1,4 @@
-package com.example.beaphilospher.controllers;
+package com.example.beaphilospoher.controllers;
 
 public class CommentController {
     private int id;

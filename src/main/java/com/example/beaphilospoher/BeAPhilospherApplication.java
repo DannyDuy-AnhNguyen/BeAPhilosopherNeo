@@ -1,4 +1,4 @@
-package com.example.beaphilospoher.applications;
+package com.example.beaphilospoher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,5 @@ public class BeAPhilospherApplication {
     public static void main(String[] args) {
         SpringApplication.run(BeAPhilospherApplication.class, args);
     }
-
+//    In order to start the application, use: http://localhost:8080/
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title><link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <h1>This page is Article</h1>
+
+<form class="px-md-2" action="/createArticle" method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="God is death">
+    </div>
+    <div class="mb-3">
+        <label for="branch" class="form-label">Branches</label>
+        <input type="text" class="form-control" id="branch" name="branch" placeholder="Existilialism, Empericism, Pragmatism">
+    </div>
+    <div class="mb-3">
+        <label for="articleText" class="form-label">What would you like to write?</label>
+        <textarea class="form-control" id="articleText" name="articleText" rows="20" cols="40"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success btn-lg mb-1">Create</button>
+</form>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

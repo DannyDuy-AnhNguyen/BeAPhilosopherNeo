@@ -1,4 +1,4 @@
-package com.example.beaphilospher.controllers;
+package com.example.beaphilospoher.controllers;
 
 import com.example.beaphilospher.Database.DatabaseConnection;
 //import com.example.beaphilospher.Handlers.Handler;

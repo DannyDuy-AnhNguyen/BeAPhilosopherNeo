@@ -1,4 +1,4 @@
-package com.example.beaphilospher.controllers;
+package com.example.beaphilospoher.controllers;
 
 abstract public class PersonController {
     protected int id;
