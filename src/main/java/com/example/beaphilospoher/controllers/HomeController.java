@@ -47,16 +47,43 @@ public class HomeController {
 
     @GetMapping("/report")
     public String report(Model model){
-          UserSession session = UserSession.getSession();
+        UserSession session = UserSession.getSession();
 
         // Add user data to the model for Thymeleaf
         model.addAttribute("username", session.getUsername());
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
+
+        UserController user = new UserController(null, null, null, null);
+        // Get the list of all users (excluding the current one) and add it to the model
+        List<UserController> users = UserController.showUsers(session.getUsername());
+        model.addAttribute("users", users);
+        System.out.println(users);
         return "report";
     }
 
-    @GetMapping("/createPhilosopher")
+    @PostMapping("/report")
+    public String report(
+            @RequestParam int userID,
+            @RequestParam String reportReason,
+            Model model
+    ){
+        UserSession session = UserSession.getSession();
+
+        // Add user data to the model for Thymeleaf
+        model.addAttribute("username", session.getUsername());
+        model.addAttribute("firstName", session.getFirstname());
+        model.addAttribute("lastName", session.getLastname());
+
+        UserController user = new UserController(null, null, null, null);
+        ReportController report = new ReportController(reportReason, userID, session.getID());
+        user.reportUser(report, reportReason, session.getID());
+
+        return "redirect:/home";
+    }
+
+
+        @GetMapping("/createPhilosopher")
     public String createPhilosopher(Model model){
           UserSession session = UserSession.getSession();
 

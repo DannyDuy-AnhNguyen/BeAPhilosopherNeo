@@ -194,10 +194,25 @@ public class UserController extends PersonController {
     }
 
 
+    public void reportUser(ReportController reportedUser, String reason, int userID) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
 
+        String insertQuery = "INSERT INTO report (description, reported_user_id, reported_by_id) VALUES (?, ?, ?)";
 
-    public void reportUser(UserController reportedUser, String reason){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+            preparedStatement.setString(1, reason);
+            preparedStatement.setInt(2, reportedUser.getReported_user());
+            preparedStatement.setInt(3, userID);
+            int rowsInserted = preparedStatement.executeUpdate();
 
+            if (rowsInserted > 0) {
+                System.out.println("User reported successfully!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error creating quote.");
+        }
     }
 
 //    Quote

@@ -10,11 +10,24 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<h1>This page is Report</h1>
+<form class="px-md-2" action="/report" method="POST">
 
-<div class="bd-example">
+    <label for="userSelect">Choose a user:</label>
+    <select id="userSelect" name="userID" class="form-select mb-3">
+        <option value="" disabled selected>Select a user</option>
+        <option th:each="user : ${users}"
+                th:value="${user.userID}"
+                th:text="${user.firstname + ' ' + user.lastname + ' (' + user.username + ')'}">
+        </option>
+    </select>
 
-</div>
+    <div class="mb-3">
+        <label for="reportReason" class="form-label">What would you like to report of the user?</label>
+        <textarea class="form-control" id="reportReason" name="reportReason" rows="6" cols="40"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-danger btn-lg mb-1">Report</button>
+</form>
 
 </body>
 </html>
