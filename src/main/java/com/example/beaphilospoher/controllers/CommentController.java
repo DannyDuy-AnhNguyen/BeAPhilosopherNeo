@@ -13,6 +13,10 @@ public class CommentController {
         this.quote = quote;
     }
 
+    public CommentController getComment(CommentController comment){
+        return comment;
+    }
+
     public void display(){
 
     }

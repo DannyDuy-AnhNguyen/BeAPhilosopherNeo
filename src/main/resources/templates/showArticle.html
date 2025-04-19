@@ -27,8 +27,9 @@
         <tbody>
         <!-- Loop through the users list and display each user's data -->
         <tr th:each="article : ${articles}">
-            <th scope="row" th:text="${article.article}">1</th>
-            <td th:text="${article.title}">First Name</td>
+            <td>
+                <a th:href="@{/readAnArticle(id=${article.article})}" th:text="${article.title}"></a>
+            </td>            <td th:text="${article.title}">First Name</td>
             <td th:text="${article.branch}">Last Name</td>
             <td th:text="${article.text}">Username</td>
             <td th:text="${article.like}">Email</td>

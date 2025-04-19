@@ -247,4 +247,20 @@ public class HomeController {
 
         return "showArticle";
     }
+
+    @GetMapping("/readAnArticle")
+    public String readAnArticle(@RequestParam("id") int articleId, Model model) {
+        UserSession session = UserSession.getSession();
+
+        model.addAttribute("username", session.getUsername());
+        model.addAttribute("firstName", session.getFirstname());
+        model.addAttribute("lastName", session.getLastname());
+
+//        ArticleController article = ArticleController.getArticleById(articleId); // You need to create this method
+//        model.addAttribute("article", article);
+
+        return "readAnArticle";
+    }
+
+
 }

@@ -39,6 +39,10 @@ public class ArticleController {
         this.username = username;
     }
 
+    public ArticleController(){
+
+    }
+
     public void displaySummary(){
 
     }
@@ -94,8 +98,13 @@ public class ArticleController {
         return articles;
     }
 
+
     public int getArticle() {
         return article;
+    }
+
+    public static int getArticleById(int articleId) {
+        return articleId;
     }
 
     public String getTitle() {
