@@ -1,6 +1,11 @@
 package com.example.beaphilospoher.controllers;
 
 import com.example.beaphilospoher.Session.UserSession;
+import com.example.beaphilospoher.Classes.Philosopher;
+import com.example.beaphilospoher.Classes.Quote;
+import com.example.beaphilospoher.Classes.Report;
+import com.example.beaphilospoher.Classes.User;
+import com.example.beaphilospoher.Classes.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -10,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class HomeController {
+public class TransferController {
     @GetMapping("/")
     public String index(){
         return "index";
@@ -30,16 +35,16 @@ public class HomeController {
 
     @GetMapping("/user")
     public String user(Model model){
-          UserSession session = UserSession.getSession();
+        UserSession session = UserSession.getSession();
 
         // Add user data to the model for Thymeleaf
         model.addAttribute("username", session.getUsername());
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        UserController user = new UserController(null, null, null, null);
+        User user = new User(null, null, null, null);
         // Get the list of all users (excluding the current one) and add it to the model
-        List<UserController> users = UserController.showUsers(session.getUsername());
+        List<User> users = User.showUsers(session.getUsername());
         model.addAttribute("users", users);
         System.out.println(users);
         return "user";
@@ -54,9 +59,9 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        UserController user = new UserController(null, null, null, null);
+        User user = new User(null, null, null, null);
         // Get the list of all users (excluding the current one) and add it to the model
-        List<UserController> users = UserController.showUsers(session.getUsername());
+        List<User> users = User.showUsers(session.getUsername());
         model.addAttribute("users", users);
         System.out.println(users);
         return "report";
@@ -75,17 +80,17 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        UserController user = new UserController(null, null, null, null);
-        ReportController report = new ReportController(reportReason, userID, session.getID());
+        User user = new User(null, null, null, null);
+        Report report = new Report(reportReason, userID, session.getID());
         user.reportUser(report, reportReason, session.getID());
 
         return "redirect:/home";
     }
 
 
-        @GetMapping("/createPhilosopher")
+    @GetMapping("/createPhilosopher")
     public String createPhilosopher(Model model){
-          UserSession session = UserSession.getSession();
+        UserSession session = UserSession.getSession();
 
         // Add user data to the model for Thymeleaf
         model.addAttribute("username", session.getUsername());
@@ -108,7 +113,7 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        PhilosopherController newPhilosopher = new PhilosopherController(yearOfBirth, yearOfDeath, bio, firstName, lastName);
+        Philosopher newPhilosopher = new Philosopher(yearOfBirth, yearOfDeath, bio, firstName, lastName);
         newPhilosopher.createPhilosopher();
 
         return "redirect:/home";
@@ -123,8 +128,8 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        PhilosopherController philosopher = new PhilosopherController(0, 0, null, null, null);
-        List<PhilosopherController> philosophers = PhilosopherController.showPhilosophers();
+        Philosopher philosopher = new Philosopher(0, 0, null, null, null);
+        List<Philosopher> philosophers = Philosopher.showPhilosophers();
         model.addAttribute("philosophers", philosophers);
 
 
@@ -140,8 +145,8 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        PhilosopherController philosopher = new PhilosopherController(0, 0, null, null, null);
-        List<PhilosopherController> philosophers = PhilosopherController.showPhilosophers();
+        Philosopher philosopher = new Philosopher(0, 0, null, null, null);
+        List<Philosopher> philosophers = Philosopher.showPhilosophers();
         model.addAttribute("philosophers", philosophers);
 
         return "addQuoteOfPhilosopher";
@@ -156,7 +161,7 @@ public class HomeController {
         System.out.println("🤗:"+ philosopherId);
         UserSession session = UserSession.getSession();
 
-        QuoteController newQuote = new QuoteController(textQuote, 0, 0, session.getID());
+        Quote newQuote = new Quote(textQuote, 0, 0, session.getID());
         newQuote.createQuote2(textQuote, philosopherId);
 
         return "redirect:/home";
@@ -164,7 +169,7 @@ public class HomeController {
 
     @GetMapping("/createQuote")
     public String quote(Model model){
-          UserSession session = UserSession.getSession();
+        UserSession session = UserSession.getSession();
 
         // Add user data to the model for Thymeleaf
         model.addAttribute("username", session.getUsername());
@@ -181,7 +186,7 @@ public class HomeController {
         System.out.println("🤗:"+ textQuote);
         UserSession session = UserSession.getSession();
 
-        QuoteController newQuote = new QuoteController(textQuote, 0, 0, session.getID());
+        Quote newQuote = new Quote(textQuote, 0, 0, session.getID());
         newQuote.createQuote(textQuote);
 
         return "redirect:/home";
@@ -195,8 +200,8 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        QuoteController quote = new QuoteController(null, 0, 0, session.getID());
-        List<QuoteController> quotes = QuoteController.showQuote();
+        Quote quote = new Quote(null, 0, 0, session.getID());
+        List<Quote> quotes = Quote.showQuote();
         model.addAttribute("quotes", quotes);
 
 
@@ -205,7 +210,7 @@ public class HomeController {
 
     @GetMapping("/createArticle")
     public String article(Model model){
-          UserSession session = UserSession.getSession();
+        UserSession session = UserSession.getSession();
 
         // Add user data to the model for Thymeleaf
         model.addAttribute("username", session.getUsername());
@@ -227,7 +232,7 @@ public class HomeController {
 
         UserSession session = UserSession.getSession();
 
-        ArticleController newArticle = new ArticleController(title, branch, articleText, 0, 0, session.getID());
+        Article newArticle = new Article(title, branch, articleText, 0, 0, session.getID());
         newArticle.createArticle();
 
         return "redirect:/home";
@@ -241,8 +246,8 @@ public class HomeController {
         model.addAttribute("firstName", session.getFirstname());
         model.addAttribute("lastName", session.getLastname());
 
-        ArticleController article = new ArticleController(null, null, null, 0, 0, session.getID());
-        List<ArticleController> articles = ArticleController.showArticle();
+        Article article = new Article(null, null, null, 0, 0, session.getID());
+        List<Article> articles = Article.showArticle();
         model.addAttribute("articles", articles);
 
         return "showArticle";
