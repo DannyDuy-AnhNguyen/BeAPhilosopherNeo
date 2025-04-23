@@ -1,4 +1,4 @@
-<h1 style="color: #ffc94a; font-size: 50px;"Hoe start je mijn applicatie op?</h1>
+<h1 style="color: #ffc94a; font-size: 50px;">Hoe start je mijn applicatie op?</h1>
 <hr />
 <p>Bij de map 'src' > main > java > com.example.beaphilsopher >  'BeAPhilsopherApplication'</p>
 <h2>En daarna hoe moet ik het starten op de browser?</h2>

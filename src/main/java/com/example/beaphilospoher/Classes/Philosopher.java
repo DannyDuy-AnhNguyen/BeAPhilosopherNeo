@@ -1,4 +1,4 @@
-package com.example.beaphilospoher.controllers;
+package com.example.beaphilospoher.Classes;
 
 import com.example.beaphilospoher.Database.DatabaseConnection;
 
@@ -9,20 +9,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhilosopherController extends PersonController {
+public class Philosopher extends Person {
     private int philosopherId;
     private int yearOfBirth;
     private int yearOfDeath;
     private String bio;
 
-    PhilosopherController(int yearOfBirth, int yearOfDeath, String bio, String firstName, String lastName){
+    public Philosopher(int yearOfBirth, int yearOfDeath, String bio, String firstName, String lastName){
         super(firstName, lastName);
         this.yearOfBirth = yearOfBirth;
         this.yearOfDeath = yearOfDeath;
         this.bio = bio;
     }
 
-    PhilosopherController(int philosopherId, String firstName, String lastName, int yearOfBirth, int yearOfDeath, String bio){
+    Philosopher(int philosopherId, String firstName, String lastName, int yearOfBirth, int yearOfDeath, String bio){
         super(firstName, lastName);
         this.philosopherId = philosopherId;
         this.yearOfBirth = yearOfBirth;
@@ -54,15 +54,15 @@ public class PhilosopherController extends PersonController {
         }
     }
 
-    public static List<PhilosopherController> showPhilosophers() {
+    public static List<Philosopher> showPhilosophers() {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
-        List<PhilosopherController> philosophers = new ArrayList<>();
+        List<Philosopher> philosophers = new ArrayList<>();
         String selectQuery = "SELECT philosopher_id, firstName, lastName, yearOfBirth, yearOfDeath, bio FROM philosopher";
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)){
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
-                PhilosopherController philosopher = new PhilosopherController(
+                Philosopher philosopher = new Philosopher(
                         rs.getInt("philosopher_id"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),

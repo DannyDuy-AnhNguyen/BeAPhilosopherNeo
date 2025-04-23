@@ -1,11 +1,11 @@
-package com.example.beaphilospoher.controllers;
+package com.example.beaphilospoher.Classes;
 
-abstract public class PersonController {
+abstract public class Person {
     protected int id;
     protected String firstName;
     protected String lastName;
 
-    public PersonController(String firstName, String lastName){
+    public Person(String firstName, String lastName){
         this.firstName = firstName;
         this.lastName = lastName; 
     }

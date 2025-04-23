@@ -1,5 +1,6 @@
 package com.example.beaphilospoher.controllers;
 
+import com.example.beaphilospoher.Classes.User;
 import org.springframework.ui.Model;
 import com.example.beaphilospoher.Session.UserSession;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class LoginController {
             Model model
             )
     {
-        UserController user = new UserController(firstName, lastName, username, password);
+        User user = new User(firstName, lastName, username, password);
         user.login(username, password);
 
         // Example logic

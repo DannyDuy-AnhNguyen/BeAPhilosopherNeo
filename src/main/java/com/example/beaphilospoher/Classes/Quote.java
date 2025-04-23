@@ -1,4 +1,4 @@
-package com.example.beaphilospoher.controllers;
+package com.example.beaphilospoher.Classes;
 
 import com.example.beaphilospoher.Database.DatabaseConnection;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuoteController {
+public class Quote {
     private int id;
     private String text;
     private int like;
@@ -17,7 +17,7 @@ public class QuoteController {
     private int author;
     private String username;
 
-    public QuoteController(String text, int like, int dislike, int author){
+    public Quote(String text, int like, int dislike, int author){
         this.text = text;
         this.like = like;
         this.dislike = dislike;
@@ -25,7 +25,7 @@ public class QuoteController {
     }
 
     //Show all data
-    public QuoteController(int id, String text, int like, int dislike, String username){
+    public Quote(int id, String text, int like, int dislike, String username){
         this.id = id;
         this.text = text;
         this.like = like;
@@ -79,8 +79,8 @@ public class QuoteController {
         }
     }
 
-    public static List<QuoteController> showQuote() {
-        List<QuoteController> quotes = new ArrayList<>();
+    public static List<Quote> showQuote() {
+        List<Quote> quotes = new ArrayList<>();
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
@@ -90,7 +90,7 @@ public class QuoteController {
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)){
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
-                QuoteController quote = new QuoteController(
+                Quote quote = new Quote(
                         rs.getInt("quote_id"),
                         rs.getString("text"),
                         rs.getInt("likes"),
@@ -130,15 +130,15 @@ public class QuoteController {
     }
 
 
-    public void addLike(UserController user){
+    public void addLike(User user){
 
     }
 
-    public void addDislike(UserController user){
+    public void addDislike(User user){
 
     }
 
-    public void addComment(CommentController comment){
+    public void addComment(Comment comment){
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.beaphilospoher.controllers;
+package com.example.beaphilospoher.Classes;
 
 import com.example.beaphilospoher.Session.UserSession;
 import org.mindrot.jbcrypt.BCrypt;
@@ -12,14 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserController extends PersonController {
+public class User extends Person {
     private int userID;
     private String username;
     private String email;
     private String telephone;
     private String password;
 
-    public UserController(String firstName, String lastName, String username, String email, String telephone, String password){
+    public User(String firstName, String lastName, String username, String email, String telephone, String password){
         super(firstName, lastName);
         this.username = username;
         this.email = email;
@@ -29,14 +29,14 @@ public class UserController extends PersonController {
     }
 
     // Constructor for Login (only username and password)
-    public UserController(String firstName, String lastName, String username, String password) {
+    public User(String firstName, String lastName, String username, String password) {
         super(firstName, lastName);
         this.username = username;
         this.password = password;
     }
 
     //Constructor for showing data
-    public UserController(int userID, String firstName, String lastName, String username, String email, String telephone, Object o){
+    public User(int userID, String firstName, String lastName, String username, String email, String telephone, Object o){
         super(firstName, lastName);
         this.userID = userID;
         this.username = username;
@@ -45,7 +45,7 @@ public class UserController extends PersonController {
     }
 
 
-    public void registerUser(UserController user) {
+    public void registerUser(User user) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
@@ -132,8 +132,8 @@ public class UserController extends PersonController {
         return BCrypt.checkpw(enteredPassword, storedHash);
     }
 
-    public static List<UserController> showUsers(String currentUsername) {
-        List<UserController> users = new ArrayList<>();
+    public static List<User> showUsers(String currentUsername) {
+        List<User> users = new ArrayList<>();
         DatabaseConnection connection = new DatabaseConnection();
         Connection connectDB = connection.getConnection();
 
@@ -146,7 +146,7 @@ public class UserController extends PersonController {
             // Loop through the result set and add each user to the list
             while (rs.next()) {
                 // Create a new UserController instance for each user
-                UserController user = new UserController(
+                User user = new User(
                         rs.getInt("user_id"),
                         rs.getString("firstname"),
                         rs.getString("lastname"),
@@ -194,7 +194,7 @@ public class UserController extends PersonController {
     }
 
 
-    public void reportUser(ReportController reportedUser, String reason, int userID) {
+    public void reportUser(Report reportedUser, String reason, int userID) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
@@ -216,28 +216,28 @@ public class UserController extends PersonController {
     }
 
 //    Quote
-    public void likeQuote(QuoteController quote){
+    public void likeQuote(Quote quote){
 //        Properly Sql statement and UPDATE function increment plus 1
     }
 
-    public void dislikeQuote(QuoteController quote){
+    public void dislikeQuote(Quote quote){
 //        Properly Sql statement and UPDATE function increment plus 1
     }
 
-    public void commentOnQuote(QuoteController quote, String text){
+    public void commentOnQuote(Quote quote, String text){
 
     }
 
 //    Article
-    public void likeArticle(ArticleController article){
+    public void likeArticle(Article article){
 //        Properly Sql statement and UPDATE function increment plus 1
 }
 
-    public void dislikeArticle(ArticleController article){
+    public void dislikeArticle(Article article){
 //        Properly Sql statement and UPDATE function increment plus 1
     }
 
-    public void commentOnArticle(ArticleController article, String text){
+    public void commentOnArticle(Article article, String text){
 
     }
     @Override

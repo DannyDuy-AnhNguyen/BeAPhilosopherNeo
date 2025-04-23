@@ -1,9 +1,10 @@
 package com.example.beaphilospoher.controllers;
 
+import com.example.beaphilospoher.Classes.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*; // Import everything needed
-import com.example.beaphilospoher.controllers.UserController;
+
 
 @Controller
 public class RegisterController {
@@ -40,7 +41,7 @@ public class RegisterController {
         }
 
         // ✅ Register user
-        UserController newUser = new UserController(firstName, lastName, username, email, telephone, password);
+        User newUser = new User(firstName, lastName, username, email, telephone, password);
         newUser.registerUser(newUser);
 
         return "redirect:/login"; // redirect after success

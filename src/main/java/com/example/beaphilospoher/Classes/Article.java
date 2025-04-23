@@ -1,4 +1,4 @@
-package com.example.beaphilospoher.controllers;
+package com.example.beaphilospoher.Classes;
 
 import com.example.beaphilospoher.Database.DatabaseConnection;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleController {
+public class Article {
     private int article;
     private String title;
     private String branch;
@@ -19,7 +19,7 @@ public class ArticleController {
     private int author;
     private String username;
 
-    public ArticleController(String title, String branch, String text, int like, int dislike, int author){
+    public Article(String title, String branch, String text, int like, int dislike, int author){
         this.title = title;
         this.branch = branch;
         this.text = text;
@@ -29,7 +29,7 @@ public class ArticleController {
     }
 
 //    show all data
-    public ArticleController(int article, String title, String branch, String text, int like, int dislike, String username){
+    public Article(int article, String title, String branch, String text, int like, int dislike, String username){
         this.article = article;
         this.title = title;
         this.branch = branch;
@@ -39,7 +39,7 @@ public class ArticleController {
         this.username = username;
     }
 
-    public ArticleController(){
+    public Article(){
 
     }
 
@@ -72,16 +72,16 @@ public class ArticleController {
         }
     }
 
-    public static List<ArticleController> showArticle(){
+    public static List<Article> showArticle(){
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
-        List<ArticleController> articles = new ArrayList<>();
+        List<Article> articles = new ArrayList<>();
         String selectQuery = "SELECT article_id, title, branch, appearance, likes, dislikes, username FROM article\n" +
                 "JOIN user ON author_id = user_id;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)){
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
-                ArticleController article = new ArticleController(
+                Article article = new Article(
                         rs.getInt("article_id"),
                         rs.getString("title"),
                         rs.getString("branch"),
@@ -132,15 +132,15 @@ public class ArticleController {
     }
 
     //    For article will come later. First quotes😉:
-    public void addLike(UserController user){
+    public void addLike(User user){
 
     }
 
-    public void addDislike(UserController user){
+    public void addDislike(User user){
 
     }
 
-    public void addComment(CommentController comment){
+    public void addComment(Comment comment){
 
     }
 }

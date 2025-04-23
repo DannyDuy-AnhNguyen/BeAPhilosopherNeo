@@ -1,5 +1,7 @@
 package com.example.beaphilospoher.controllers;
 
+import com.example.beaphilospoher.Classes.Report;
+import com.example.beaphilospoher.Classes.User;
 import com.example.beaphilospoher.Database.DatabaseConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReportControllerTest {
 
     @InjectMocks
-    private ReportController reportController;
+    private Report reportController;
 
     @InjectMocks
-    private UserController userController;
+    private User userController;
 
     @Mock
     private DatabaseConnection databaseConnection;
@@ -45,7 +47,7 @@ public class ReportControllerTest {
         int reportedUserID = 2;
         int reportedByID = 1;
         String reason = "Inappropriate behavior";
-        ReportController report = new ReportController(reason, reportedUserID, reportedByID);
+        Report report = new Report(reason, reportedUserID, reportedByID);
 
         // Call the reportUser method
         userController.reportUser(report, reason, reportedByID);
@@ -69,7 +71,7 @@ public class ReportControllerTest {
         int reportedUserID = 2;
         int reportedByID = 1;
         String reason = "Inappropriate behavior";
-        ReportController report = new ReportController(reason, reportedUserID, reportedByID);
+        Report report = new Report(reason, reportedUserID, reportedByID);
 
         // Call the reportUser method, which should now throw an exception due to the mock SQLException
         assertDoesNotThrow(() -> userController.reportUser(report, reason, reportedByID));

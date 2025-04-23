@@ -1,5 +1,6 @@
 package com.example.beaphilospoher.controllers;
 
+import com.example.beaphilospoher.Classes.Philosopher;
 import com.example.beaphilospoher.Database.DatabaseConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PhilosopherControllerTest {
 
     @InjectMocks
-    private PhilosopherController philosopherController;
+    private Philosopher philosopherController;
 
     @Mock
     private DatabaseConnection databaseConnection;
@@ -44,7 +45,7 @@ public class PhilosopherControllerTest {
     @Test
     public void testCreatePhilosopher() throws SQLException {
         // Setting up the data
-        philosopherController = new PhilosopherController(1800, 1870, "A philosopher of the 19th century", "John", "Doe");
+        philosopherController = new Philosopher(1800, 1870, "A philosopher of the 19th century", "John", "Doe");
 
         // Call the method
         philosopherController.createPhilosopher();
@@ -74,7 +75,7 @@ public class PhilosopherControllerTest {
         when(preparedStatement.executeQuery()).thenReturn(resultSet);
 
         // Call the method
-        List<PhilosopherController> philosophers = PhilosopherController.showPhilosophers();
+        List<Philosopher> philosophers = Philosopher.showPhilosophers();
 
         // Assertions
         assertNotNull(philosophers);

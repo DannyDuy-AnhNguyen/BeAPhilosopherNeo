@@ -1,5 +1,6 @@
 package com.example.beaphilospoher.controllers;
 
+import com.example.beaphilospoher.Classes.Article;
 import com.example.beaphilospoher.Database.DatabaseConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import static org.mockito.Mockito.*;
 public class ArticleControllerTest {
 
     @InjectMocks
-    private ArticleController articleController;
+    private Article articleController;
 
     @Mock
     private DatabaseConnection databaseConnection;
@@ -34,7 +35,7 @@ public class ArticleControllerTest {
         when(connection.prepareStatement(any(String.class))).thenReturn(preparedStatement);
 
         // Manually instantiate ArticleController with necessary parameters
-        articleController = new ArticleController("Test Title", "Science", "Some article text", 10, 2, 1);
+        articleController = new Article("Test Title", "Science", "Some article text", 10, 2, 1);
     }
 
     @Test
